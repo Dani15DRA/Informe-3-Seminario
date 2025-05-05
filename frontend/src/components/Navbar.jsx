@@ -1,7 +1,6 @@
-// Navbar.jsx
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
+import { FiHome, FiShoppingCart, FiUsers, FiTruck, FiPackage } from 'react-icons/fi';
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,7 +14,6 @@ const Navbar = () => {
     navigate('/login');
   };
 
-  // Función para determinar si un enlace está activo
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -26,27 +24,67 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/dashboard" className="text-xl font-bold text-indigo-600">
-                Sistema de Gestión
+              <Link to="/" className="text-xl font-bold text-indigo-600">
+                Gestión de Suministros
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
-                to="/dashboard"
+                to="/"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  isActive('/dashboard')
+                  isActive('/')
                     ? 'border-indigo-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                 }`}
               >
-                Inicio
+                <FiHome className="mr-1" /> Inicio
+              </Link>
+              <Link
+                to="/orders"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                  isActive('/orders')
+                    ? 'border-indigo-500 text-gray-900'
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                }`}
+              >
+                <FiShoppingCart className="mr-1" /> Órdenes
               </Link>
               {role === 'admin' && (
                 <>
-                  
-                  
+                  <Link
+                    to="/suppliers"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      isActive('/suppliers')
+                        ? 'border-indigo-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    <FiTruck className="mr-1" /> Proveedores
+                  </Link>
+                  <Link
+                    to="/products"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      isActive('/products')
+                        ? 'border-indigo-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    <FiPackage className="mr-1" /> Productos
+                  </Link>
+                  <Link
+                    to="/users"
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      isActive('/users')
+                        ? 'border-indigo-500 text-gray-900'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    }`}
+                  >
+                    <FiUsers className="mr-1" /> Usuarios
+                  </Link>
                 </>
               )}
+
+              
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
